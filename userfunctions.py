@@ -1,8 +1,20 @@
+from flask import redirect
 import spotipy
 import pprint
 from spotipy.oauth2 import SpotifyClientCredentials
+from dotenv import load_dotenv, find_dotenv
+import os
 
-client_credentials_manager = SpotifyClientCredentials()
+# Load env variables
+load_dotenv(find_dotenv())
+
+# Env Variables
+CLIENT_ID = os.environ.get("CLIENT_ID")
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
+REDIRECT_URI = os.environ.get("REDIRECT_URI")
+
+# Intialize spotipy instance
+client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 pp = pprint.PrettyPrinter(indent=2)
