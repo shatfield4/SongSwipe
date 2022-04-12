@@ -3,6 +3,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
 import os
+import userfunctions
 
 app = Flask(__name__)
 
@@ -20,21 +21,9 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 @app.route("/")
 def hello_world():  
-    print("Hello")
-    # related = sp.artist_related_artists('spotify:artist:3jOstUTkEu2JkjvRdBA5Gu')
     
-    results = sp.current_user_saved_tracks()
-    
-    for idx, item in enumerate(results['items']):
-        track = item['track']
+    uf = userfunctions
 
-        print(idx, track['artists'][0]['name'], " – ", track['name'])
-        
-    return render_template('index.html')
+    results = uf.getArtist("Justin Bieber")
 
-
-
-
-@app.route("/recommendations")
-def reccomendations():
-    return render_template('recommendations.html', )
+    return results
