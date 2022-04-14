@@ -1,11 +1,18 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
 import os
 import userfunctions
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
+
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(200), nullable=False)
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -20,10 +27,8 @@ client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, clien
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 @app.route("/")
-def hello_world():  
-    
-    uf = userfunctions
+def index():  
+    return render_template("index.html")
 
-    results = uf.getArtist("Justin Bieber")
-
-    return results
+if __name__ == "__main__":
+    app.run(debug=True)
