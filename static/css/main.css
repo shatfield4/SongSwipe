@@ -1,25 +1,47 @@
 .Mainheader {
-    height: 100px;
+    height: 200px;
     padding: 10px 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     font-family: sans-serif;
+}
+
+em {
+    font-weight: bold;
+    font-style: normal;
 }
 
 .inputdiv {
-    height: 100px;
+    height: 30px;
     padding: 10px 0;
     display: flex;
     justify-content: center;
+    align-content: center;
     font-family: sans-serif;
 }
 
-.inputbox {
-    padding-top: 2px;
+.artistcard {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30%;
+    justify-content: center;
+    align-content: center;
 }
 
+.swipes {
+    height: 20px;
+    padding: 10px 35%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    font-family: sans-serif;
+}
 
-img {
-    width: 50px;
-    height: 50px;
+.recommendations {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-family: sans-serif;
 }

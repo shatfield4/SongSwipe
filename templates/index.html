@@ -7,25 +7,47 @@
 
 {% block body %}
 <div class="Mainheader">
-    <h1>Welcome to Songswipe</h1>
-</div>
-
-<div class="Mainheader">
-    <img src="../images/testmonkey.png" alt="Monkey in da suit">
-</div>
-
-<div class="Mainheader">
-    <a href="https://github.com/shatfield4/SongSwipe">Github Repo</a>
+    <div id="welcome"><h1>Welcome to Songswipe</h1></div>
+    <div id ="github"><a href="https://github.com/shatfield4/SongSwipe">Github Repo</a></div>
 </div>
 
 <div class="inputdiv">
-    <p>Please enter an artist's name:</p>
-    <div class="inputbox"
-        <form action="/url" method="GET">
+    <div id="inputprompt"><p>Please enter an artist's name:</p></div>
+    <div id="inputbox"
+        <form action="/url" method="GET" style="padding-left:10px;">
             <input type="text" name="artist" placeholder="Justin Bieber" style="margin-top: 13px">
         </form>
     </div>
 </div>
 
+<!-- normal image linking didn't work, used url_for() to look for testmonkey.png in static/images -->
+<div class="artistcard">
+    <p style="text-align:center;"><em>ARTIST NAME PLACEHOLDER</em></p>
+
+    <img src="{{url_for('static', filename='images/testmonkey.png')}}">
+</div>
+
+<div class="swipes">
+    <div id="swipeleft">
+        <button type="submit" formmethod="POST">
+            Swipe Left
+        </button>
+    </div>
+    <div id="swiperight">
+        <button type="submit" formmethod="POST">
+            Swipe Right
+        </button>
+    </div>
+</div>
+
+<div class="recommendations">
+    <button type="submit" formmethod="POST" disabled="disabled">Get Recommendations</button>
+</div>
+
+<!-- gonna throw all debug UI stuff in here so its easy to comment out or whatever later -->
+<div class="debug">
+    <!-- TO DO: make a js debug table that shows artists and genres when swipe is done -->
+    <!-- TO DO: make a js debug table that shows what songs are in the recommendation queue at that moment -->
+</div>
 
 {% endblock %}
