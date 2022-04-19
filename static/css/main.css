@@ -1,0 +1,25 @@
+.Mainheader {
+    height: 100px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.inputdiv {
+    height: 100px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.inputbox {
+    padding-top: 2px;
+}
+
+
+img {
+    width: 50px;
+    height: 50px;
+}

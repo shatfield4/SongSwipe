@@ -1,10 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
 import os
+import userfunctions
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
+# Honestly idk this starts sqlite or something
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -19,22 +25,8 @@ client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, clien
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 @app.route("/")
-def hello_world():  
-    print("Hello")
-    # related = sp.artist_related_artists('spotify:artist:3jOstUTkEu2JkjvRdBA5Gu')
-    
-    results = sp.current_user_saved_tracks()
-    
-    for idx, item in enumerate(results['items']):
-        track = item['track']
+def index():  
+    return render_template("index.html")
 
-        print(idx, track['artists'][0]['name'], " – ", track['name'])
-        
-    return render_template('index.html')
-
-
-
-
-@app.route("/recommendations")
-def reccomendations():
-    return render_template('recommendations.html', )
+if __name__ == "__main__":
+    app.run(debug=True)
