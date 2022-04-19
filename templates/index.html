@@ -6,8 +6,26 @@
 {% endblock %}
 
 {% block body %}
-<h1>Welcome to Songswipe</h1>
-<img src="../images/testmonkey.png" alt="Monkey in da suit">
+<div class="Mainheader">
+    <h1>Welcome to Songswipe</h1>
+</div>
 
-<a href="https://github.com/shatfield4/SongSwipe">Github Repo</a>
+<div class="Mainheader">
+    <img src="../images/testmonkey.png" alt="Monkey in da suit">
+</div>
+
+<div class="Mainheader">
+    <a href="https://github.com/shatfield4/SongSwipe">Github Repo</a>
+</div>
+
+<div class="inputdiv">
+    <p>Please enter an artist's name:</p>
+    <div class="inputbox"
+        <form action="/url" method="GET">
+            <input type="text" name="artist" placeholder="Justin Bieber" style="margin-top: 13px">
+        </form>
+    </div>
+</div>
+
+
 {% endblock %}
