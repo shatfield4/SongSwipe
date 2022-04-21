@@ -61,11 +61,11 @@ def getReccomendationFromArtist(artist):
 
 
 
-artist_name = input("Input artist name: ")
+#artist_name = input("Input artist name: ")
 
-pp.pprint(getArtist(artist_name))
-print("\n\n\n\n")
-getReccomendationFromArtist(artist_name)
+#pp.pprint(getArtist(artist_name))
+#print("\n\n\n\n")
+#getReccomendationFromArtist(artist_name)
 # pp.pprint(getReccomendationFromArtist(artist_name))
 
 # print(sp.recommendation_genre_seeds())
