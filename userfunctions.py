@@ -6,8 +6,6 @@ from dotenv import load_dotenv, find_dotenv
 import os
 from spotipy.oauth2 import SpotifyOAuth
 
-import sqlite3
-from sqlite3 import Error
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -28,19 +26,6 @@ pp = pprint.PrettyPrinter(indent=2)
 
 
 
-# Connect to database.db
-def create_connection(db_file):
-    """ create a database connection to a SQLite database """
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-        print(sqlite3.version)
-    except Error as e:
-        print(e)
-    finally:
-        if conn:
-            conn.close()
-            
 
 def getArtist(name):
     results = sp.search(q='artist:' + name, type='artist')
@@ -88,8 +73,6 @@ def getReccomendationFromArtist(artist):
 
 
 if __name__ == '__main__':
-    
-    create_connection(r"database.db")
     
     
     artist_name = input("Input artist name: ")
