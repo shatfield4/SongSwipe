@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
 import os
 from spotipy.oauth2 import SpotifyOAuth
-
+from sqlite_test import Sqlite_test
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -24,6 +24,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 pp = pprint.PrettyPrinter(indent=2)
 
+sqlite = Sqlite_test(r'database.db')
 
 
 
@@ -74,6 +75,8 @@ def getReccomendationFromArtist(artist):
 
 if __name__ == '__main__':
     
+
+    # sqlite.addToArtist("SZA", "RB")
     
     artist_name = input("Input artist name: ")
     pp.pprint(getArtist(artist_name))
