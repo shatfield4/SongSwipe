@@ -10,6 +10,5 @@ class Artist:
         pass
         
         
-
     def __repr__(self):
         return "Artist('{}', '{}')".format(self.name, self.genre_id)

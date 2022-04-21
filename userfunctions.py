@@ -75,9 +75,12 @@ def getReccomendationFromArtist(artist):
 
 if __name__ == '__main__':
     
-
-    # sqlite.addToArtist("SZA", "RB")
     
+    # sqlite.addToSavedArtists("SZA", "RB")
+    # sqlite.removeArtist("SZA")
+    # sqlite.cursor.execute("DROP TABLE Song")
+
+
     artist_name = input("Input artist name: ")
     pp.pprint(getArtist(artist_name))
     print("\n\n\n\n")

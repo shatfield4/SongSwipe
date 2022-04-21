@@ -12,31 +12,37 @@ class Sqlite_test:
         
              
              
-    def addToArtist(self, name, genre_id):
-        self.cursor.execute("INSERT INTO artists VALUES ('{}', '{}')".format(name, genre_id))
+    def addToSavedArtists(self, artist_id, genre_id):
+        self.cursor.execute("INSERT INTO saved_artists VALUES ('{}', '{}')".format(artist_id, genre_id))
+        self.connection.commit()
+        self.connection.close()
+
+    def removeArtist(self, artist_id):
+        self.cursor.execute("DELETE FROM saved_artists WHERE artist_id='{}'".format(artist_id))
+        self.connection.commit()
+        self.connection.close()
+    
+    def addToQueue(self, artist_id):
+        self.cursor.execute("INSERT INTO artist_queue VALUES ('{}')".format(artist_id))
+        self.connection.commit()
+        self.connection.close()
+
+    def removeFromQueue(self,artist_id):
+        self.cursor.execute("DELETE FROM artist_queue WHERE artist_id='{}'".format(artist_id))
         self.connection.commit()
         self.connection.close()
 
 
 
+#CREATE SAVED_ARTISTS TABLE
+#--------------------------------------------------#
+# sqlite.cursor.execute("""CREATE TABLE saved_artists (
+#                             Artist_id text,
+#                             Genre_id text                 
+#                             )""")
 
-
-
-
-
-
-#     db = sqlite3.connect(r"database.db")
-#     cursor = db.cursor()
-    
-#     # cursor.execute("DELETE FROM artists WHERE name='Justin Bieber'")
-#     # cursor.execute("""CREATE TABLE artists (
-#     #                 name text,
-#     #                 genre text
-#     #                 )""")
-#     # cursor.execute("INSERT INTO artists VALUES ('Justin Bieber', 'Kpop')")
-#     # cursor.execute("SELECT * FROM artists WHERE name='Justin Bieber'")
-#     # cursor.execute("SELECT * FROM artists WHERE name='Justin Bieber'")
-#     # print(cursor.fetchall())
-    
-#     db.commit()
-#     db.close()
+#CREATE ARTISTS_QUEUE TABLE
+#--------------------------------------------------#
+# sqlite.cursor.execute("""CREATE TABLE artist_queue (
+#                             artist_id text
+#                             )""")
