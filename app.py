@@ -26,12 +26,12 @@ REDIRECT_URI = os.environ.get("REDIRECT_URI")
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-#@app.route("/")
-#def index():  
-#    return render_template("index.html")
+@app.route("/")
+def index():  
+    return render_template("index.html")
 
-@app.route('/')
-def index():
+@app.route('/auth/')
+def auth():
     response = getUser(CLIENT_ID, REDIRECT_URI, 5000)
     return redirect(response)
         
@@ -62,9 +62,8 @@ def callback():
     token_type = response_data["token_type"]
     expires_in = response_data["expires_in"]
 
-    print(access_token)
-
-    return render_template("index.html", access_token = access_token)
+    #return {"access_token": access_token}
+    return redirect(f"http://localhost:3000?access_token={access_token}", code=307)
 
 if __name__ == "__main__":
     app.run(debug=True)
