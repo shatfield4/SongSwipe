@@ -5,6 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import userfunctions
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 app = Flask(__name__)
 
@@ -24,9 +25,15 @@ REDIRECT_URI = os.environ.get("REDIRECT_URI")
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-@app.route("/")
-def index():  
-    return render_template("index.html")
+x = datetime.datetime.now()
 
-if __name__ == "__main__":
+@app.route("/data")
+def apistuff():  
+    return {
+        'name': 'Songswipe',
+        'date': x,
+        'language': 'Python'
+    }
+
+if __name__ == '__main__':
     app.run(debug=True)
