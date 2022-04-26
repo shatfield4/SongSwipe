@@ -11,6 +11,7 @@ function App() {
         language: "",
     });
 
+    {/* Will replace with logic that shows whatever artist is in queue */}
     const currentartist = "placeholder artist name"
 
     // Using useEffect for single rendering
@@ -32,9 +33,9 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>Songswipe</h1>
+                <span id="title"><h1>Songswipe</h1></span>
 
-                <form action="/url" method="GET">
+                <form action="/url" method="POST">
                   <p>Enter an artist's name:</p>
                   <input type="text" name="artist_name" placeholder="Justin Bieber"></input>
                   <button type="submit">Submit</button>
@@ -42,12 +43,16 @@ function App() {
 
                 <p>Current artist: {currentartist}</p>
 
-                {/*Test image, do not push to prod*/}
+                {/* Test image, will replace with artist card */}
                 <img src="../static/images/testmonkey.png"></img>
 
-                <form action="/url" method="GET">
-                  <button type="submit">Left</button><button type="submit">Right</button>
-                </form>
+                <div id="swipebuttons">
+                  <div>
+                    <form action="/url" method="GET">
+                      <button type="submit">Left</button><button type="submit">Right</button>
+                    </form>
+                  </div>
+                </div>
 
             </header>
 
