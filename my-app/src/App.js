@@ -10,14 +10,6 @@ function App() {
         date: "",
         language: "",
     });
-  
-    // Get method
-    const apiGet = () => {
-        fetch("https://jsonplaceholder.typicode.com/posts").then((response) =>
-        response.json()).then((json) => {
-            console.log(json);
-        });
-    };
 
     // Using useEffect for single rendering
     useEffect(() => {
@@ -38,13 +30,20 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>React and flask</h1>
+                <h1>Songswipe</h1>
+
+                <form action="/url" method="GET">
+                  <p>Enter an artist's name:</p>
+                  <input type="text" name="artist_name" placeholder="Justin Bieber"></input>
+                  <button type="submit">Submit</button>
+                </form>
+
                 <p>{data.name}</p>
                 <p>{data.date}</p>
                 <p>{data.language}</p>
 
-                <button onClick={apiGet}>Fetch Api</button>
             </header>
+
         </div>
     );
 }
