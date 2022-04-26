@@ -11,6 +11,8 @@ function App() {
         language: "",
     });
 
+    const currentartist = "placeholder artist name"
+
     // Using useEffect for single rendering
     useEffect(() => {
         // Using fetch to fetch the api from 
@@ -38,9 +40,14 @@ function App() {
                   <button type="submit">Submit</button>
                 </form>
 
-                <p>{data.name}</p>
-                <p>{data.date}</p>
-                <p>{data.language}</p>
+                <p>Current artist: {currentartist}</p>
+
+                {/*Test image, do not push to prod*/}
+                <img src="../static/images/testmonkey.png"></img>
+
+                <form action="/url" method="GET">
+                  <button type="submit">Left</button><button type="submit">Right</button>
+                </form>
 
             </header>
 
