@@ -6,6 +6,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 from spotipy.oauth2 import SpotifyOAuth
 from sqlite_test import Sqlite_test
+import json
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -27,15 +28,6 @@ pp = pprint.PrettyPrinter(indent=2)
 sqlite = Sqlite_test(r'database.db')
 
 
-
-def getArtist(name):
-    results = sp.search(q='artist:' + name, type='artist')
-    items = results['artists']['items']
-    if len(items) > 0:
-        return items[0]
-    else:
-        return None
-
 def getArtistGenres(name):
     results = sp.search(q='artist:' + name, type='artist')
     items = results['artists']['items']
@@ -48,6 +40,7 @@ def getReccomendationFromArtist(artist):
     artistGenreInfo = getArtistGenres(artist)
     allReccomendationGenres = sp.recommendation_genre_seeds()
 
+    # Find all genres that match the artist to all genres
     validGenres = []
 
     if artistGenreInfo != None and len(artistGenreInfo) > 0:
@@ -61,11 +54,29 @@ def getReccomendationFromArtist(artist):
     else:
         print('No results found...')
 
-    print('Valid Genres: ' + str(validGenres))
-
+    # Get song reccomendations from the artist specified
     if len(validGenres) > 0:
         print('\n\n\nReccomendations:')
-        pp.pprint(sp.recommendations(seed_genres=validGenres))
+
+        reccomendationsOutput = sp.recommendations(seed_genres=validGenres)
+
+        songReccomendationIds = []
+        songReccomendationNames = []
+        songPreviewUrls = []
+
+        # Get song names and IDs from spotipy
+        for x in range(0, len(reccomendationsOutput['tracks'])):
+            songReccomendationIds.append(reccomendationsOutput['tracks'][x]['id'])
+            songReccomendationNames.append(reccomendationsOutput['tracks'][x]['name'])
+            songPreviewUrls.append(reccomendationsOutput['tracks'][x]['preview_url'])
+
+
+        pp.pprint(songReccomendationIds)
+        pp.pprint(songReccomendationNames)
+        pp.pprint(songPreviewUrls)
+
+
+        # pp.pprint(sp.recommendations(seed_genres=validGenres)['tracks'][0]['name'])
         print('\n\n\n')
 
 
@@ -82,7 +93,7 @@ if __name__ == '__main__':
 
 
     artist_name = input("Input artist name: ")
-    pp.pprint(getArtist(artist_name))
+    # pp.pprint(getArtist(artist_name))
     print("\n\n\n\n")
     getReccomendationFromArtist(artist_name)
 
