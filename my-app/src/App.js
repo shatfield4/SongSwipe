@@ -44,13 +44,14 @@ function App() {
                 <p>Current artist: {currentartist}</p>
 
                 {/* Test image, will replace with artist card */}
-                <img src="../static/images/testmonkey.png"></img>
+                <img alt="monkey" src="../static/images/testmonkey.png"></img>
 
                 <div id="swipebuttons">
-                  <div>
-                    <form action="/url" method="GET">
-                      <button type="submit">Left</button><button type="submit">Right</button>
-                    </form>
+                  <div class="button">
+                    <button type="submit">Left</button>
+                  </div>
+                  <div class="button">
+                    <button type="submit">Right</button>
                   </div>
                 </div>
 
