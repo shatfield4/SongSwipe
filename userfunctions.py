@@ -1,3 +1,6 @@
+#THIS BRANCH IS BEHIND - WORKING ON A FUNCTION.
+
+
 from flask import redirect
 import spotipy
 import pprint
@@ -65,15 +68,46 @@ def getReccomendationFromArtist(artist):
 
     if len(validGenres) > 0:
         print('\n\n\nReccomendations:')
-        pp.pprint(sp.recommendations(seed_genres=validGenres))
+        resultsFromGenre = sp.recommendations(seed_genres=validGenres)
+        pp.pprint(resultsFromGenre)
         print('\n\n\n')
+        pp.pprint(getSongsFromGenres(validGenres))
+
+def getSongsFromGenres(validGenres):
+    
+    tracks = ['3qN5qMTKyEEmiTZD38BNTT']
+
+    resultsFromGenre = sp.recommendations(seed_genres=validGenres)
+    songRecs = sp.recommendations(seed_tracks=tracks)
+
+    # tracks = ['3qN5qMTKyEEmiTZD38BNTT', '2RttW7RAu5nOAfq6YFvApB', '3oIhthYPSKwAwJLA8JClkV', '6kwAbEjseqBob48jCus7Sz']
+
+    #This if statement is suppose to compare songs with the same genres as fetched before,
+    #but Spotify doesn't give out the track genre based off this error "KeyError: 'genres'". 
+    #Code runs fine til it gets tp the if statement. Will be actively working on this.
+
+    if (songRecs['genres'][validGenres] == resultsFromGenre['genres']):
+        for x in range(0, len(songRecs['tracks'])):
+            pp.pprint(sp.recommendations(seed_tracks=tracks)['tracks'][x]['name'])
+
+    return songRecs
+    #  genreRec = ""
+
+    #  for ele in validGenres:
+    #      genreRec += ele
+
+    #  return sp.category_playlists(category_id=genreRec, limit=20, offset=0)
+    
+    #Just some random psuedocode that I didn't use
+    #if songwithgenre == genre {
+    # return song
+    # }
 
 
 
 
 
-
-if __name__ == '__main__':
+# if __name__ == '__main__':
     
     
     # sqlite.addToSavedArtists("SZA", "RB")
@@ -81,8 +115,9 @@ if __name__ == '__main__':
     # sqlite.cursor.execute("DROP TABLE Song")
 
 
-    artist_name = input("Input artist name: ")
-    pp.pprint(getArtist(artist_name))
-    print("\n\n\n\n")
-    getReccomendationFromArtist(artist_name)
+artist_name = input("Input artist name: ")
+pp.pprint(getArtist(artist_name))
+print("\n\n\n\n")
+getReccomendationFromArtist(artist_name)
+
 
