@@ -65,7 +65,8 @@ def getReccomendationFromArtist(artist):
 
     if len(validGenres) > 0:
         print('\n\n\nReccomendations:')
-        pp.pprint(sp.recommendations(seed_genres=validGenres))
+        for i in range(10):
+            pprint(sp.recommendations(seed_genres=validGenres)['tracks'][i]['name'])
         print('\n\n\n')
 
 
