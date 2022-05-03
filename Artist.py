@@ -1,9 +1,10 @@
 class Artist:
     
     
-    def __init__(self, name, genre_id):
+    def __init__(self, name, genre_id, popularity):
         self.name = name
         self.genre_id = genre_id
+        self.popularity = popularity
     
     
     def getArtist(self, id):
@@ -11,4 +12,4 @@ class Artist:
         
         
     def __repr__(self):
-        return "Artist('{}', '{}')".format(self.name, self.genre_id)
+        return "Artist('{}', '{}',  '{}')".format(self.name, self.genre_id, self.popularity)

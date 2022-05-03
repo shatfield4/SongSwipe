@@ -12,8 +12,8 @@ class Sqlite_test:
         
              
              
-    def addToSavedArtists(self, artist_id, genre_id):
-        self.cursor.execute("INSERT INTO saved_artists VALUES ('{}', '{}')".format(artist_id, genre_id))
+    def addToSavedArtists(self, artist_id, genre_id, popularity):
+        self.cursor.execute("INSERT INTO saved_artists VALUES ('{}', '{}', '{}')".format(artist_id, genre_id, popularity))
         self.connection.commit()
         self.connection.close()
 
