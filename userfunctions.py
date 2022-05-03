@@ -75,30 +75,30 @@ def getReccomendationFromArtist(artist):
         print('\n\n\n')
 
 def getUsername():
-    print(sp.current_user()['display_name'])
+    return sp.current_user()['display_name']
 
 def getFollowedArtists():
-    pp.pprint(sp.current_user_followed_artists())
-
-
-
-
+    followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
+    for i in range(followedArtists):
+        print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])      
+    
 if __name__ == '__main__':
     
-    
+    Current_user = getUsername()
     # sqlite.addToSavedArtists("SZA", "RB")
     # sqlite.removeArtist("SZA")
     # sqlite.cursor.execute("DROP TABLE Song")
-
+    # pp.pprint(sp.current_user()['display_name'])
     
-    getUsername()
     
+    artist_name = input("Input artist name: ")
+    pp.pprint(getArtist(artist_name))
+    print("\n\n\n\n")
+    getReccomendationFromArtist(artist_name)
+    
+    
+    print(Current_user, "'s following artists:\n")
     getFollowedArtists()
     
+    pp
     
-    # pp.pprint(sp.current_user()['display_name'])
-    # artist_name = input("Input artist name: ")
-    # pp.pprint(getArtist(artist_name))
-    # print("\n\n\n\n")
-    # getReccomendationFromArtist(artist_name)
-
