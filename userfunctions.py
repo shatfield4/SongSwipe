@@ -100,5 +100,5 @@ if __name__ == '__main__':
     print(Current_user, "'s following artists:\n")
     getFollowedArtists()
     
-    pp
+    
     
