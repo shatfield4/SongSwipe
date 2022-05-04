@@ -1,35 +1,17 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import TinderCard from "react-tinder-card"
+//import "./styles/App.css";
   
+const onSwipe = (direction) => {
+    console.log('You swiped: ' + direction)
+}
+  
+  const onCardLeftScreen = (myIdentifier) => {
+    console.log(myIdentifier + ' left the screen')
+}
+
 function App() {
-    // usestate for setting a javascript
-    // object for storing and using data
-    const [data, setdata] = useState({
-        name: "",
-        date: "",
-        language: "",
-    });
-
-    {/* Will replace with logic that shows whatever artist is in queue */}
-    const currentartist = "placeholder artist name"
-
-    // Using useEffect for single rendering
-    useEffect(() => {
-        // Using fetch to fetch the api from 
-        // flask server it will be redirected to proxy
-        fetch("/data").then((res) =>
-            res.json().then((data) => {
-                // Setting a data from api
-                setdata({
-                    name: data.name,
-                    date: data.date,
-                    language: data.language,
-                });
-            })
-        );
-    }, []);
-  
     return (
         <div className="App">
             <header className="App-header">
@@ -41,12 +23,13 @@ function App() {
                   <button type="submit">Submit</button>
                 </form>
 
-                <p>Current artist: {currentartist}</p>
+                <p>Current artist: NONE</p>
 
-                {/* Test image, will replace with artist card */}
-                <img alt="monkey" src="../static/images/testmonkey.png"></img>
+                <div className="cardContainer">
+                    <TinderCard className="swipe" onSwipe={onSwipe} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['right', 'left']}>fuck</TinderCard>
+                </div>
 
-                <div id="swipebuttons">
+                <div id="swipeButtons">
                   <div class="button">
                     <button type="submit">Left</button>
                   </div>
