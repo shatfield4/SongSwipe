@@ -1,56 +1,56 @@
 // Importing modules
 import React, { useState, useEffect } from "react";
-import "./App.css";
-  
+import "./styles/App.css";
+import ArtistCard from "./ArtistCard"
+
+const API_URL = "hi"
+
+// static placeholder API stuff to let the page render
+const artist = {
+    "name": "Justin Bieber",
+    "photo": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36",
+    "genre": "Pop"
+}
+
 function App() {
-    // usestate for setting a javascript
-    // object for storing and using data
-    const [data, setdata] = useState({
-        name: "",
-        date: "",
-        language: "",
-    });
-
-    {/* Will replace with logic that shows whatever artist is in queue */}
-    const currentartist = "placeholder artist name"
-
-    // Using useEffect for single rendering
+    {/*This function should pull API stuff from Flask and pass it to ArtistCard
+       TODO: Make API and work on getting the logic to update the render when a new card is ready to render
+             Swiping should pull from the top of the list of recommendations and pass it through fetchRecommendations()*/}
+    const fetchRecommendations = async (artistrec) => {
+        const response = await fetch(`${API_URL}&s=${artistrec}`);
+        const data = await response.json();
+    
+        console.log(data)
+    }
+    {/* Hook that updates when page is loaded. Right now just passes an artistname (artistrec) to fetchRecommendations()*/}
     useEffect(() => {
-        // Using fetch to fetch the api from 
-        // flask server it will be redirected to proxy
-        fetch("/data").then((res) =>
-            res.json().then((data) => {
-                // Setting a data from api
-                setdata({
-                    name: data.name,
-                    date: data.date,
-                    language: data.language,
-                });
-            })
-        );
-    }, []);
-  
+        fetchRecommendations('')
+    }, [])
+
     return (
         <div className="App">
             <header className="App-header">
                 <span id="title"><h1>Songswipe</h1></span>
 
-                <form action="/url" method="POST">
+                {/* This form is to submit an artist name to us. Can be removed when there's another
+                    method to start off the recommendations process */}
+                <form method="POST">
                   <p>Enter an artist's name:</p>
                   <input type="text" name="artist_name" placeholder="Justin Bieber"></input>
                   <button type="submit">Submit</button>
                 </form>
 
-                <p>Current artist: {currentartist}</p>
+                {/* Calls ArtistCard.jsx to render the Artist Card */}
+                <div className="artistCardContainer">
+                    <ArtistCard artist={artist}/>
+                </div>
 
-                {/* Test image, will replace with artist card */}
-                <img src="../static/images/testmonkey.png"></img>
-
-                <div id="swipebuttons">
-                  <div>
-                    <form action="/url" method="GET">
-                      <button type="submit">Left</button><button type="submit">Right</button>
-                    </form>
+                <div className="swipeButtons">
+                  <div className="button">
+                    <button onClick={() => {}}>Left</button>
+                  </div>
+                  <div className="button">
+                    <button onClick={() => {}}>Right</button>
                   </div>
                 </div>
 
