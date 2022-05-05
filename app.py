@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for, redirect, request, jsonify
 import requests, json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -7,8 +7,11 @@ import os
 import userfunctions
 from flask_sqlalchemy import SQLAlchemy
 from getToken import getUser
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 # Honestly idk this starts sqlite or something
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -34,7 +37,15 @@ def index():
 def auth():
     response = getUser(CLIENT_ID, REDIRECT_URI, 5000)
     return redirect(response)
-        
+
+@cross_origin(supports_credentials=True)
+@app.route('/data/')
+def data():
+    liked_artist = request.args['artist_liked']
+    response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
+    
+    return jsonify(response)
+
 @app.route('/callback/')
 def callback():
     # Auth Step 4: Requests refresh and access tokens
