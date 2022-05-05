@@ -81,5 +81,5 @@ if __name__ == '__main__':
     artist_name = input("Input artist name: ")
     pp.pprint(getArtist(artist_name))
     print("\n\n\n\n")
-    #getReccomendationFromArtist(artist_name)
+    getReccomendationFromArtist(artist_name)
 
