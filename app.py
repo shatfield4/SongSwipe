@@ -40,11 +40,9 @@ def api_getArtist(artist):
 
 @app.route("/api/getreco/<string:artist>", methods = ["GET"])
 def api_getRecoFromArtist(artist):
-    output = userf.getReccomendationFromArtist("Justin Bieber")
+    output = userf.getReccomendationFromArtist(artist)
 
     return jsonify(output)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
