@@ -1,11 +1,10 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, jsonify, render_template, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
 import os
 import userfunctions
 from flask_sqlalchemy import SQLAlchemy
-import datetime
 
 app = Flask(__name__)
 
@@ -25,15 +24,21 @@ REDIRECT_URI = os.environ.get("REDIRECT_URI")
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-x = datetime.datetime.now()
+# Initialize userfunctions
+userf = userfunctions
 
-@app.route("/data")
-def apistuff():  
-    return {
-        'name': 'Songswipe',
-        'date': x,
-        'language': 'Python'
-    }
+# Responds to GET requests on this route. Returns an artist from URI
+#   Example:
+#       127.0.0.1:5000/api/getartist/justin%20bieber
+#   The above will return getArtist("Justin Bieber") in JSON
+@app.route("/api/getartist/<string:artist>", methods = ['GET'])
+def api_getRecoFromArtist(artist):  
+    output = userf.getArtist(artist)
+
+    # Output is a dict. Jsonify converts to JSON format
+    return jsonify(output)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
