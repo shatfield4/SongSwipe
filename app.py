@@ -31,11 +31,17 @@ userf = userfunctions
 #   Example:
 #       127.0.0.1:5000/api/getartist/justin%20bieber
 #   The above will return getArtist("Justin Bieber") in JSON
-@app.route("/api/getartist/<string:artist>", methods = ['GET'])
-def api_getRecoFromArtist(artist):  
+@app.route("/api/getartist/<string:artist>", methods = ["GET"])
+def api_getArtist(artist):  
     output = userf.getArtist(artist)
 
     # Output is a dict. Jsonify converts to JSON format
+    return jsonify(output)
+
+@app.route("/api/getreco/<string:artist>", methods = ["GET"])
+def api_getRecoFromArtist(artist):
+    output = userf.getReccomendationFromArtist("Justin Bieber")
+
     return jsonify(output)
 
 

@@ -57,12 +57,12 @@ def getReccomendationFromArtist(artist):
                 if currentGrabbedGenre == allReccomendationGenres['genres'][x]:
                     validGenres.append(currentGrabbedGenre)
     else:
-        print('N/A')
+        print('value: ''N/A')
 
-    print('Valid Genres: ' + str(validGenres))
+    print('valid_genres: ' + str(validGenres))
 
     if len(validGenres) > 0:
-        print('\n\n\nReccomendations:')
+        print('reccomendations:')
         pp.pprint(sp.recommendations(seed_genres=validGenres))
         print('\n\n\n')
 
