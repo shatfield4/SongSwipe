@@ -20,16 +20,74 @@ body {
   padding: 10px 10px;
 }
 
-.swipeButtons {
-  display: flex;
-  width: 400px;
-  justify-content: space-evenly;
-  align-items:center;
-  padding: 10px 10px;
-  margin: 10px 10px;
+
+button {
+  padding: 3px;
+  margin-left: 5px;
+  border: none;
+  cursor: pointer;
 }
 
-.button {
+.swipeButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 75px;
+  color: white;
+  align-items: center;
+}
+
+.leftButton button {
+  width: 100px;
+  padding: 15px;
+  padding-bottom: 20px;
+  text-decoration: none;
+  color: white;
+  background: none;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px rgb(16, 107, 22);
+  font-size: 24px;
+}
+
+.leftButton button:hover {
+  background-color: #276a29;
+  border-radius: 15px;
+}
+
+.leftButton button:active {
+  background-color: #1d5f1f;
+  box-shadow: 0 5px rgb(18, 91, 29);
+  transform: translateY(4px);
+}
+
+.rightButton button {
+  width: 100px;
+  padding: 15px;
+  padding-bottom: 20px;
+  text-decoration: none;
+  color: white;
+  background: none;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px rgb(16, 107, 22);
+  font-size: 24px;
+}
+
+.rightButton button:hover {
+  background-color: #276a29;
+  border-radius: 15px;
+}
+
+.rightButton button:active {
+  background-color: #1d5f1f;
+  box-shadow: 0 5px rgb(18, 91, 29);
+  transform: translateY(4px);
+}
+
+
+/* button {
   display: inline-block;
   padding: 15px 25px;
   font-size: 24px;
@@ -42,12 +100,4 @@ body {
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px rgb(16, 107, 22);
-}
-
-.button:hover {background-color: #3e8e41}
-
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px rgb(18, 91, 29);
-  transform: translateY(4px);
-}
+} */

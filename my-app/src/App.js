@@ -44,12 +44,11 @@ function App() {
                 <div className="artistCardContainer">
                     <ArtistCard artist={artist}/>
                 </div>
-
                 <div className="swipeButtons">
-                  <div className="button">
+                  <div className="leftButton">
                     <button onClick={() => {}}>Left</button>
                   </div>
-                  <div className="button">
+                  <div className="rightButton">
                     <button onClick={() => {}}>Right</button>
                   </div>
                 </div>
