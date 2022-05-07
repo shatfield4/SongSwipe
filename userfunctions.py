@@ -26,8 +26,6 @@ pp = pprint.PrettyPrinter(indent=2)
 
 sqlite = Sqlite_test(r'database.db')
 
-
-
 def getArtist(name):
     results = sp.search(q='artist:' + name, type='artist')
     items = results['artists']['items']
@@ -59,19 +57,17 @@ def getReccomendationFromArtist(artist):
                 if currentGrabbedGenre == allReccomendationGenres['genres'][x]:
                     validGenres.append(currentGrabbedGenre)
     else:
-        print('No results found...')
-
-    print('Valid Genres: ' + str(validGenres))
+        return validGenres
 
     if len(validGenres) > 0:
-        print('\n\n\nReccomendations:')
-        pp.pprint(sp.recommendations(seed_genres=validGenres))
-        print('\n\n\n')
+        return sp.recommendations(seed_genres=validGenres)
 
-
-
-
-
+    #print('valid_genres: ' + str(validGenres))
+    #
+    #if len(validGenres) > 0:
+    #    print('reccomendations:')
+    #    pp.pprint(sp.recommendations(seed_genres=validGenres))
+    #    print('\n\n\n')
 
 if __name__ == '__main__':
     
