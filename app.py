@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, url_for
+from flask import Flask, jsonify, request, render_template, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
@@ -38,11 +38,24 @@ def api_getArtist(artist):
     # Output is a dict. Jsonify converts to JSON format
     return jsonify(output)
 
+# Same as above, same syntax when requesting an artist from URI
+# Returns recommendations with associated info
 @app.route("/api/getreco/<string:artist>", methods = ["GET"])
 def api_getRecoFromArtist(artist):
     output = userf.getReccomendationFromArtist(artist)
 
     return jsonify(output)
+
+# This is a POST request. Responds to POST with a parameter
+# Right now just returns what the user passed as param as a list
+# Something like this can be used as the redirect attribute in React?
+# Maybe when it detects a right/left swipe
+@app.route("/api/swiperight", methods = ["POST"])
+def api_postSwipeRight():
+    input_json = request.get_json(force=True)
+    dictToReturn = {"text":input_json["text"]}
+
+    return jsonify(dictToReturn)
 
 if __name__ == '__main__':
     app.run(debug=True)
