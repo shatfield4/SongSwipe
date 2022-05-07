@@ -80,9 +80,34 @@ def getReccomendationFromArtist(artist):
         print('\n\n\n')
 
 
+<<<<<<< Updated upstream
 
 
 
+=======
+def getFollowedArtists():
+    followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
+    for i in range(followedArtists):
+        print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])      
+
+
+def checkGenre(artist, queue):
+    artistGenreInfo = getArtistGenres(artist)
+    allReccomendationGenres = sp.recommendation_genre_seeds()
+
+    queue = []
+
+    if artistGenreInfo != None and len(artistGenreInfo) > 0:
+        # Loop through genres grabbed from calling getArtistGenres
+        for n in range(0, len(artistGenreInfo)):
+            currentGrabbedGenre = artistGenreInfo[n]
+            # Loop through all genres from spotify and add them to the validGenres dictionary if there is a match
+            for x in range(0, len(allReccomendationGenres['genres'])):
+                if currentGrabbedGenre == allReccomendationGenres['genres'][x]:
+                    queue.append(currentGrabbedGenre)
+    else:
+        print('No results found...')
+>>>>>>> Stashed changes
 
 if __name__ == '__main__':
     
@@ -90,6 +115,7 @@ if __name__ == '__main__':
     # sqlite.addToSavedArtists("SZA", "RB")
     # sqlite.removeArtist("SZA")
     # sqlite.cursor.execute("DROP TABLE Song")
+<<<<<<< Updated upstream
 
 
     artist_name = input("Input artist name: ")
@@ -97,3 +123,27 @@ if __name__ == '__main__':
     print("\n\n\n\n")
     getReccomendationFromArtist(artist_name)
 
+=======
+    # pp.pprint(sp.current_user()['display_name'])
+     
+    
+    i = 0
+    while i < 3:
+        artist_name = input("Input artist name: ")
+        pp.pprint(getArtist(artist_name))
+        print("\n\n\n\n")
+        getReccomendationFromArtist(artist_name)
+        checkGenre(artist_name)
+        artist_queue = input("Artists queue: ")
+        print(artist_queue)
+        i += 1
+    
+    
+
+
+    print(Current_user, "'s following artists:\n")
+    getFollowedArtists()
+    
+    
+    
+>>>>>>> Stashed changes
