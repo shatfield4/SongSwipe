@@ -4,6 +4,8 @@ import pprint
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv, find_dotenv
 import os
+from spotipy.oauth2 import SpotifyOAuth
+from sqlite_test import Sqlite_test
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -13,11 +15,16 @@ CLIENT_ID = os.environ.get("CLIENT_ID")
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 REDIRECT_URI = os.environ.get("REDIRECT_URI")
 
+# scope = 'user-read-playback-state'
 # Intialize spotipy instance
+
 client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
+# oAuth = auth_manager=SpotifyOAuth(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=scope, redirect_uri=REDIRECT_URI)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 pp = pprint.PrettyPrinter(indent=2)
+
+sqlite = Sqlite_test(r'database.db')
 
 def getArtist(name):
     results = sp.search(q='artist:' + name, type='artist')
@@ -50,22 +57,24 @@ def getReccomendationFromArtist(artist):
                 if currentGrabbedGenre == allReccomendationGenres['genres'][x]:
                     validGenres.append(currentGrabbedGenre)
     else:
-        print('No results found...')
-
-    print('Valid Genres: ' + str(validGenres))
+        return validGenres
 
     if len(validGenres) > 0:
-        print('\n\n\nReccomendations:')
-        pp.pprint(sp.recommendations(seed_genres=validGenres))
-        print('\n\n\n')
+        return sp.recommendations(seed_genres=validGenres)
 
+    #print('valid_genres: ' + str(validGenres))
+    #
+    #if len(validGenres) > 0:
+    #    print('reccomendations:')
+    #    pp.pprint(sp.recommendations(seed_genres=validGenres))
+    #    print('\n\n\n')
 
+if __name__ == '__main__':
+    
 
-#artist_name = input("Input artist name: ")
-
-#pp.pprint(getArtist(artist_name))
-#print("\n\n\n\n")
-#getReccomendationFromArtist(artist_name)
-# pp.pprint(getReccomendationFromArtist(artist_name))
-
-# print(sp.recommendation_genre_seeds())
+    # sqlite.addToArtist("SZA", "RB")
+    
+    artist_name = input("Input artist name: ")
+    pp.pprint(getArtist(artist_name))
+    print("\n\n\n\n")
+    getReccomendationFromArtist(artist_name)
