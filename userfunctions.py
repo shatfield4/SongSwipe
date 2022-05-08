@@ -80,15 +80,25 @@ def getReccomendationFromArtist(artist):
         print('\n\n\n')
 
 
-<<<<<<< Updated upstream
 
-
-
-=======
 def getFollowedArtists():
+
+    artistList = []
     followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
     for i in range(followedArtists):
-        print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])      
+        print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])   
+        artistList.append(sp.current_user_followed_artists()['artist'])   
+
+
+def getRelatedArtists(name):
+    results = sp.search(q='artist:' + name, type='artist')
+
+    relatedArtists = []
+    artistList = len(sp.artist_related_artists()['artist']['items'])
+    for i in range(artistList):
+        print(i+1, ".  ", sp.artist_related_artists()['artists']['items'][i]['name'])   
+        relatedArtists.append(sp.artist_related_artists()['artist']) 
+
 
 
 def checkGenre(artist, queue):
@@ -107,7 +117,6 @@ def checkGenre(artist, queue):
                     queue.append(currentGrabbedGenre)
     else:
         print('No results found...')
->>>>>>> Stashed changes
 
 if __name__ == '__main__':
     
@@ -115,35 +124,32 @@ if __name__ == '__main__':
     # sqlite.addToSavedArtists("SZA", "RB")
     # sqlite.removeArtist("SZA")
     # sqlite.cursor.execute("DROP TABLE Song")
-<<<<<<< Updated upstream
 
 
     artist_name = input("Input artist name: ")
     # pp.pprint(getArtist(artist_name))
     print("\n\n\n\n")
     getReccomendationFromArtist(artist_name)
-
-=======
+    getRelatedArtists(artist_name)
     # pp.pprint(sp.current_user()['display_name'])
      
     
-    i = 0
-    while i < 3:
-        artist_name = input("Input artist name: ")
-        pp.pprint(getArtist(artist_name))
-        print("\n\n\n\n")
-        getReccomendationFromArtist(artist_name)
-        checkGenre(artist_name)
-        artist_queue = input("Artists queue: ")
-        print(artist_queue)
-        i += 1
+    # i = 0
+    # while i < 3:
+    #    artist_name = input("Input artist name: ")
+    #    pp.pprint(getArtistGenres(artist_name))
+    #    print("\n\n\n\n")
+    #    getReccomendationFromArtist(artist_name)
+    #    checkGenre(artist_name)
+    #    artist_queue = input("Artists queue: ")
+    #    print(artist_queue)
+    #    i += 1
     
     
 
 
-    print(Current_user, "'s following artists:\n")
+    print( "Following artists:\n")
     getFollowedArtists()
     
     
     
->>>>>>> Stashed changes
