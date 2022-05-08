@@ -127,11 +127,11 @@ if __name__ == '__main__':
 
 
     artist_name = input("Input artist name: ")
-    # pp.pprint(getArtist(artist_name))
+    pp.pprint(getArtistGenres(artist_name))
     print("\n\n\n\n")
     getReccomendationFromArtist(artist_name)
     getRelatedArtists(artist_name)
-    # pp.pprint(sp.current_user()['display_name'])
+    pp.pprint(sp.current_user()['display_name'])
      
     
     # i = 0
@@ -148,7 +148,7 @@ if __name__ == '__main__':
     
 
 
-    print( "Following artists:\n")
+    print("Following artists:\n")
     getFollowedArtists()
     
     
