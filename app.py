@@ -72,9 +72,10 @@ def auth():
 @cross_origin(supports_credentials=True)
 @app.route('/data/')
 def data():
-    liked_artist = request.args['artist_liked']
-    response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
-    
+    # liked_artist = request.args['artist_liked']
+    response = userf.getFollowedArtists()
+    # response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
+    print(response)
     return jsonify(response)
 
 @app.route('/callback/')

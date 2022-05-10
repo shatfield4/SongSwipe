@@ -77,11 +77,45 @@ def getReccomendationFromArtist(artist):
 def getUsername():
     return sp.current_user()['display_name']
 
-def getFollowedArtists():
-    followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
-    for i in range(followedArtists):
-        print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])      
+# def getFollowedArtists():
+#     followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
+#     for i in range(followedArtists):
+#         print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])      
         
+def getFollowedArtists():
+    
+    response = {}
+    
+
+    followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
+    
+    # choose random len 
+    for i in range(followedArtists):
+        # print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])
+        response['name'] = sp.current_user_followed_artists()['artists']['items'][i]['name']
+        response['artistID'] = sp.current_user_followed_artists()['artists']['items'][i]['id']
+        
+        if len(sp.current_user_followed_artists()['artists']['items'][i]['genres']) == 0 :
+            response['genre'] = '' 
+        else:
+            response['genre'] = sp.current_user_followed_artists()['artists']['items'][i]['genres'][0]
+
+    
+    
+    return(response)
+        
+def getRelatedArtists(name):
+    results = sp.search(q='artist:' + name, type='artist')
+
+    relatedArtists = []
+    artistList = len(sp.artist_related_artists(name)['artists']['items'])
+    for i in range(artistList):
+        print(i+1, ".  ", sp.artist_related_artists(name)['artists']['items'][i]['name'])
+        relatedArtists.append(sp.artist_related_artists(name)['artists']['items'][i]['id'])
+    
+    return(relatedArtists)
+  
+
 if __name__ == '__main__':
     
     Current_user = getUsername()
@@ -91,14 +125,18 @@ if __name__ == '__main__':
     # pp.pprint(sp.current_user()['display_name'])
     
     
+
+    
     artist_name = input("Input artist name: ")
     pp.pprint(getArtist(artist_name))
     print("\n\n\n\n")
-    getReccomendationFromArtist(artist_name)
+    # getReccomendationFromArtist(artist_name)
 
 
-    print(Current_user, "'s following artists:\n")
-    getFollowedArtists()
+    # getRelatedArtists('0BMfVLB7t0VCzNBZZKBy6A')
+    # pp.pprint(sp.artist_related_artists('1AhjOkOLkbHUfcHDSErXQs')['artists'])
+    # print(Current_user, "'s following artists:\n")
+    print(getFollowedArtists())
     
     
     
