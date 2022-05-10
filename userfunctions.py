@@ -7,6 +7,7 @@ import os
 from spotipy.oauth2 import SpotifyOAuth
 from sqlite_test import Sqlite_test
 import json
+import random
 
 # Load env variables
 load_dotenv(find_dotenv())
@@ -85,23 +86,18 @@ def getUsername():
 def getFollowedArtists():
     
     response = {}
-    
 
     followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
+     
+    i = random.randint(0,followedArtists)
     
-    # choose random len 
-    for i in range(followedArtists):
-        # print(i+1, ".  ", sp.current_user_followed_artists()['artists']['items'][i]['name'])
-        response['name'] = sp.current_user_followed_artists()['artists']['items'][i]['name']
-        response['artistID'] = sp.current_user_followed_artists()['artists']['items'][i]['id']
-        
-        if len(sp.current_user_followed_artists()['artists']['items'][i]['genres']) == 0 :
-            response['genre'] = '' 
-        else:
-            response['genre'] = sp.current_user_followed_artists()['artists']['items'][i]['genres'][0]
+    response['name'] = sp.current_user_followed_artists()['artists']['items'][i]['name']
+    response['artistID'] = sp.current_user_followed_artists()['artists']['items'][i]['id']  
+    if len(sp.current_user_followed_artists()['artists']['items'][i]['genres']) == 0 :
+        response['genre'] = '' 
+    else:
+        response['genre'] = sp.current_user_followed_artists()['artists']['items'][i]['genres'][0]
 
-    
-    
     return(response)
         
 def getRelatedArtists(name):
