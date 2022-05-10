@@ -58,16 +58,48 @@ const App = () => {
   const [artistImage, setArtistImage] = useState(require('.//images/testmonkey.png'));
 
   let previousArtist = "placeholder artist name";
+  let dislikedCounter = 0;
 
   const [artist, setArtist] = useState({ name: "", photo: "", genre: "", spotify_url: "" });
 
   let token = '';
 
+  useEffect(() => {
+    let ignore = false;
+    
+    if (!ignore) {
+      let path = "/data?initial=0&artist_liked=" + previousArtist;
+      fetch(path)
+        .then((res) => res.json())
+        .then((json) => {
+            const uris = json["song_url"];
+            const name = json["name"];
+            const img_url = json["img_url"];
+            const genre = json["genre"];
+
+            setArtistImage(img_url);
+            setCurrentArtist(name);
+
+            previousArtist = name;
+
+            setArtist({name: name, photo: img_url, genre: genre, spotify_url: uris})
+
+            setURIs(parseURIs(uris));
+            setIsPlaying(true);
+
+            if (URIsInput && URIsInput.current) {
+              URIsInput.current.value = uris;
+            }
+      })
+    }
+    return () => { ignore = true; }
+  },[]);
+
   const handleClickLiked = useCallback((e) => {
     e.preventDefault();
     console.log("Liked")
     
-    let path = "/data?artist_liked=" + currentartist;
+    let path = "/data?artist_liked=" + previousArtist;
     fetch(
       path)
                   .then((res) => res.json())
@@ -92,10 +124,35 @@ const App = () => {
                       }
     })
   }, []);
+
   const handleClickDisLiked = useCallback((e) => {
     e.preventDefault();
 
     console.log("Disliked");
+    dislikedCounter += 1;
+    let path = "/data?initial=" + dislikedCounter + "&artist_liked=" + previousArtist;
+      fetch(path)
+        .then((res) => res.json())
+        .then((json) => {
+            const uris = json["song_url"];
+            const name = json["name"];
+            const img_url = json["img_url"];
+            const genre = json["genre"];
+
+            setArtistImage(img_url);
+            setCurrentArtist(name);
+
+            previousArtist = name;
+
+            setArtist({name: name, photo: img_url, genre: genre, spotify_url: uris})
+
+            setURIs(parseURIs(uris));
+            setIsPlaying(true);
+
+            if (URIsInput && URIsInput.current) {
+              URIsInput.current.value = uris;
+            }
+      })
   }, []);
 
   let search = window.location.search;
@@ -188,6 +245,30 @@ const App = () => {
     }
     else {
       console.log("Disliked");
+      dislikedCounter += 1;
+      let path = "/data?initial=" + dislikedCounter + "&artist_liked=" + previousArtist;
+      fetch(path)
+        .then((res) => res.json())
+        .then((json) => {
+            const uris = json["song_url"];
+            const name = json["name"];
+            const img_url = json["img_url"];
+            const genre = json["genre"];
+
+            setArtistImage(img_url);
+            setCurrentArtist(name);
+
+            previousArtist = name;
+
+            setArtist({name: name, photo: img_url, genre: genre, spotify_url: uris})
+
+            setURIs(parseURIs(uris));
+            setIsPlaying(true);
+
+            if (URIsInput && URIsInput.current) {
+              URIsInput.current.value = uris;
+            }
+      })
     }
   }
   
@@ -252,10 +333,10 @@ const App = () => {
             </div>
             </TinderCard>
 
-            {/*<div className="swipeButtons">
+            <div className="swipeButtons">
               <button onClick={handleClickDisLiked} className="button">Left</button>
               <button onClick={handleClickLiked} className="button">Right</button>
-            </div>*/}
+            </div>
             <Player key={token}>
               {token && (
                 <SpotifyWebPlayer
