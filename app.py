@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template, url_for, redirect
 import spotipy, requests, json
 from spotipy.oauth2 import SpotifyClientCredentials
+from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv, find_dotenv
 import os
 import userfunctions
@@ -24,8 +25,14 @@ CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 REDIRECT_URI = os.environ.get("REDIRECT_URI")
 
 # Intialize spotipy instance
-client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
-sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+scope = 'user-follow-read'
+
+oAuth = auth_manager=SpotifyOAuth(client_id=CLIENT_ID, client_secret=CLIENT_SECRET, scope=scope, redirect_uri=REDIRECT_URI)
+sp = spotipy.Spotify(auth_manager=oAuth)
+
+
+# client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
+# sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # Initialize userfunctions
 userf = userfunctions
@@ -73,7 +80,7 @@ def auth():
 @app.route('/data/')
 def data():
     # liked_artist = request.args['artist_liked']
-    response = userf.getFollowedArtists()
+    response = userf.getRelatedArtists('Justin Bieber')
     # response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
     print(response)
     return jsonify(response)
