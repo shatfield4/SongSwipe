@@ -118,4 +118,4 @@ def callback():
     return redirect(f"http://localhost:3000?access_token={access_token}", code=307)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')

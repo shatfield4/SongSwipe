@@ -1,0 +1,119 @@
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+/usr/local/lib/python3.8/dist-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+/root/.venvs/flask/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://143.198.156.183:5000 (Press CTRL+C to quit)
+72.219.184.69 - - [11/May/2022 00:29:27] "GET /data/ HTTP/1.1" 200 -
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+/root/.venvs/flask/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://143.198.156.183:5000 (Press CTRL+C to quit)
+72.219.184.69 - - [11/May/2022 00:30:50] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:30:51] "GET /data/ HTTP/1.1" 200 -
+[2022-05-11 00:30:52,841] ERROR in app: Exception on /data/ [GET]
+Traceback (most recent call last):
+  File "/root/.venvs/flask/lib/python3.8/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/root/.venvs/flask/lib/python3.8/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/root/.venvs/flask/lib/python3.8/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/root/.venvs/flask/lib/python3.8/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/root/.venvs/flask/lib/python3.8/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "app.py", line 76, in data
+    response = userf.getFollowedArtists()
+  File "/root/SongSwipe/userfunctions.py", line 94, in getFollowedArtists
+    response['name'] = sp.current_user_followed_artists()['artists']['items'][i]['name']
+IndexError: list index out of range
+72.219.184.69 - - [11/May/2022 00:30:52] "[35m[1mGET /data/ HTTP/1.1[0m" 500 -
+72.219.184.69 - - [11/May/2022 00:30:55] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:30:57] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:30:58] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:30:59] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:31:02] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:34:15] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:35:02] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:35:43] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:36:20] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:37:35] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:39:12] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:39:31] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+35.237.4.214 - - [11/May/2022 00:40:01] "GET /data/ HTTP/1.1" 200 -
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+/root/.venvs/flask/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://143.198.156.183:5000 (Press CTRL+C to quit)
+72.219.184.69 - - [11/May/2022 00:42:30] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:42:33] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:42:44] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:43:02] "[32mGET /callback HTTP/1.1[0m" 308 -
+72.219.184.69 - - [11/May/2022 00:43:02] "[31m[1mGET /callback/ HTTP/1.1[0m" 400 -
+72.219.184.69 - - [11/May/2022 00:43:32] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+76.88.230.237 - - [11/May/2022 00:43:48] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:43:59] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+76.88.230.237 - - [11/May/2022 00:44:35] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:45:13] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+76.88.230.237 - - [11/May/2022 00:50:47] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+76.88.230.237 - - [11/May/2022 00:51:31] "[31m[1mGET /callback/ HTTP/1.1[0m" 400 -
+76.88.230.237 - - [11/May/2022 00:51:32] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+76.88.230.237 - - [11/May/2022 00:52:54] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+/root/.venvs/flask/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+ * Restarting with stat
+/root/.venvs/flask/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Debugger is active!
+ * Debugger PIN: 513-881-488
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+/root/.venvs/flask/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+ * Running on all addresses (0.0.0.0)
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://127.0.0.1:5000
+ * Running on http://143.198.156.183:5000 (Press CTRL+C to quit)
+72.219.184.69 - - [11/May/2022 00:59:39] "GET /data/ HTTP/1.1" 200 -
+76.88.230.237 - - [11/May/2022 00:59:42] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 00:59:45] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:59:48] "GET /data/ HTTP/1.1" 200 -
+72.219.184.69 - - [11/May/2022 00:59:52] "GET /data/ HTTP/1.1" 200 -
+76.88.230.237 - - [11/May/2022 01:00:03] "[32mGET /auth/ HTTP/1.1[0m" 302 -
+72.219.184.69 - - [11/May/2022 01:00:04] "[32mGET /auth/ HTTP/1.1[0m" 302 -
