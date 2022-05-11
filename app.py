@@ -115,7 +115,7 @@ def callback():
     expires_in = response_data["expires_in"]
 
     #return {"access_token": access_token}
-    return redirect(f"http://localhost:3000?access_token={access_token}", code=307)
+    return redirect(f"https://songswipe-0.netlify.app?access_token={access_token}", code=307)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
