@@ -109,7 +109,7 @@ def getRelatedArtists(name):
      
     response['name'] = sp.artist_related_artists(artist)['artists'][i]['name']
     response['artistID'] = sp.artist_related_artists(artist)['artists'][i]['id']
-    response['uri'] = sp.artist_related_artists(artist)['artists'][i]['uri']
+    response['song_url'] = sp.artist_related_artists(artist)['artists'][i]['uri']
     if len(sp.artist_related_artists(artist)['artists'][i]['genres']) == 0 :
             response['genre'] = '' 
     else:

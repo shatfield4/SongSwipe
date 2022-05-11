@@ -8,6 +8,7 @@ import userfunctions
 from flask_sqlalchemy import SQLAlchemy
 from getToken import getUser
 from flask_cors import CORS, cross_origin
+from random import randrange
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -36,6 +37,10 @@ sp = spotipy.Spotify(auth_manager=oAuth)
 
 # Initialize userfunctions
 userf = userfunctions
+
+# Get initial artist list to be used for error handling
+initialArtistList = json.load(open("initialArtists.json"))
+numInitialArtists = len(initialArtistList)
 
 # Responds to GET requests on this route. Returns an artist from URI
 #   Example:
@@ -80,11 +85,44 @@ def auth():
 @app.route('/data/')
 def data():
     # liked_artist = request.args['artist_liked']
-    liked_artist = userf.getFollowedArtists()['name']
-    response = userf.getRelatedArtists(liked_artist)
+    #liked_artist = userf.getFollowedArtists()['name']
+    #response = userf.getRelatedArtists(liked_artist)
     # response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
-    print(liked_artist)
-    print(response)
+    liked_artist = request.args['artist_liked']
+    if 'initial' in request.args:
+        #initialArtistIndex = int(request.args['initial'])
+        #response = initialArtistList[initialArtistIndex % numInitialArtists]
+
+        # Get recomendations from followed artist
+        try:
+            liked_artist = userf.getFollowedArtists()['name']
+            response = userf.getRelatedArtists(liked_artist)
+
+            # Since the followed artists are getting only Justin's followed artists and not the users, this has it so we insert some randomness so the chance to roll from the initial Artists dictionary is also allowed
+            randomNess = randrange(2)
+            if randomNess == 1:
+                initialArtistIndex = int(request.args['initial'])
+                response = initialArtistList[randrange(numInitialArtists)]
+        except Exception:
+            # Sometime getRelatedArtists fails so as backup
+            initialArtistIndex = int(request.args['initial'])
+            response = initialArtistList[initialArtistIndex % numInitialArtists]
+    else:
+        # Get recomended from liked_artist
+        try:
+            response = userf.getRelatedArtists(liked_artist)
+        except Exception:
+            try:
+                liked_artist = userf.getFollowedArtists()['name']
+                response = userf.getRelatedArtists(liked_artist)
+            except Exception:
+                # Sometime getRelatedArtists fails so as backup
+                response = initialArtistList[randrange(numInitialArtists)]
+        #if response == None:
+            #response = initialArtistList[randrange(numInitialArtists)]
+            #liked_artist = userf.getFollowedArtists()['name']
+            #response = userf.getRelatedArtists(liked_artist)
+
     return jsonify(response)
 
 @app.route('/callback/')
@@ -116,6 +154,7 @@ def callback():
 
     #return {"access_token": access_token}
     return redirect(f"https://songswipe-0.netlify.app?access_token={access_token}", code=307)
+    #return redirect(f"http://localhost:3000?access_token={access_token}", code=307)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
