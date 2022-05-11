@@ -68,7 +68,7 @@ const App = () => {
     let ignore = false;
     
     if (!ignore) {
-      let path = "http://143.198.156.183:5000/data?initial=0&artist_liked=" + previousArtist;
+      let path = "/data?initial=0&artist_liked=" + previousArtist;
       fetch(path)
         .then((res) => res.json())
         .then((json) => {
@@ -99,7 +99,7 @@ const App = () => {
     e.preventDefault();
     console.log("Liked")
     
-    let path = "http://143.198.156.183:5000/data?artist_liked=" + previousArtist;
+    let path = "/data?artist_liked=" + previousArtist;
     fetch(
       path)
                   .then((res) => res.json())
@@ -130,7 +130,7 @@ const App = () => {
 
     console.log("Disliked");
     dislikedCounter += 1;
-    let path = "http://143.198.156.183:5000/data?initial=" + dislikedCounter + "&artist_liked=" + previousArtist;
+    let path = "/data?initial=" + dislikedCounter + "&artist_liked=" + previousArtist;
       fetch(path)
         .then((res) => res.json())
         .then((json) => {
@@ -219,7 +219,7 @@ const App = () => {
     if (direction == "right") {
       console.log("Liked")
     
-      let path = "http://143.198.156.183:5000/data?artist_liked=" + previousArtist;
+      let path = "/data?artist_liked=" + previousArtist;
       fetch(
         path)
         .then((res) => res.json())
@@ -247,7 +247,7 @@ const App = () => {
     else {
       console.log("Disliked");
       dislikedCounter += 1;
-      let path = "http://143.198.156.183:5000/data?initial=" + dislikedCounter + "&artist_liked=" + previousArtist;
+      let path = "/data?initial=" + dislikedCounter + "&artist_liked=" + previousArtist;
       fetch(path)
         .then((res) => res.json())
         .then((json) => {
