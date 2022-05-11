@@ -80,8 +80,10 @@ def auth():
 @app.route('/data/')
 def data():
     # liked_artist = request.args['artist_liked']
-    response = userf.getRelatedArtists('Justin Bieber')
+    liked_artist = userf.getFollowedArtists()['name']
+    response = userf.getRelatedArtists(liked_artist)
     # response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
+    print(liked_artist)
     print(response)
     return jsonify(response)
 
