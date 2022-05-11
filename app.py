@@ -88,8 +88,10 @@ def data():
     #liked_artist = userf.getFollowedArtists()['name']
     #response = userf.getRelatedArtists(liked_artist)
     # response = {"name": "Justin Bieber", "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36", "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s", "genre": "Pop"}
+    print('test')
     liked_artist = request.args['artist_liked']
     if 'initial' in request.args:
+        print('initial')
         #initialArtistIndex = int(request.args['initial'])
         #response = initialArtistList[initialArtistIndex % numInitialArtists]
 
@@ -97,6 +99,7 @@ def data():
         try:
             liked_artist = userf.getFollowedArtists()['name']
             response = userf.getRelatedArtists(liked_artist)
+            
 
             # Since the followed artists are getting only Justin's followed artists and not the users, this has it so we insert some randomness so the chance to roll from the initial Artists dictionary is also allowed
             randomNess = randrange(4)
@@ -122,7 +125,7 @@ def data():
             #response = initialArtistList[randrange(numInitialArtists)]
             #liked_artist = userf.getFollowedArtists()['name']
             #response = userf.getRelatedArtists(liked_artist)
-
+            
     return jsonify(response)
 
 @app.route('/callback/')
