@@ -99,7 +99,7 @@ def data():
             response = userf.getRelatedArtists(liked_artist)
 
             # Since the followed artists are getting only Justin's followed artists and not the users, this has it so we insert some randomness so the chance to roll from the initial Artists dictionary is also allowed
-            randomNess = randrange(2)
+            randomNess = randrange(4)
             if randomNess == 1:
                 initialArtistIndex = int(request.args['initial'])
                 response = initialArtistList[randrange(numInitialArtists)]

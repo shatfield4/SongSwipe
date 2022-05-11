@@ -86,15 +86,16 @@ def getUsername():
 def getFollowedArtists():
     
     response = {}
-    followedArtists = len(sp.current_user_followed_artists()['artists']['items'])
+    followResults = sp.current_user_followed_artists()
+    followedArtists = len(followResults['artists']['items'])
      
     i = random.randint(0,followedArtists-1)
-    response['name'] = sp.current_user_followed_artists()['artists']['items'][i]['name']
-    response['artistID'] = sp.current_user_followed_artists()['artists']['items'][i]['id']  
-    if len(sp.current_user_followed_artists()['artists']['items'][i]['genres']) == 0 :
+    response['name'] = followResults['artists']['items'][i]['name']
+    response['artistID'] = followResults['artists']['items'][i]['id']  
+    if len(followResults['artists']['items'][i]['genres']) == 0 :
         response['genre'] = '' 
     else:
-        response['genre'] = sp.current_user_followed_artists()['artists']['items'][i]['genres'][0]
+        response['genre'] = followResults['artists']['items'][i]['genres'][0]
 
     return(response)
         
@@ -103,22 +104,24 @@ def getRelatedArtists(name):
     response = {}
     results = sp.search(q='artist:' + name, type='artist')
     artist = results['artists']['items'][0]['id']
-    relatedArtistsLength = len(sp.artist_related_artists(artist)['artists'])
+
+    relatedResults = sp.artist_related_artists(artist)
+    relatedArtistsLength = len(relatedResults['artists'])
     
     i = random.randint(0,relatedArtistsLength-1)
      
-    response['name'] = sp.artist_related_artists(artist)['artists'][i]['name']
-    response['artistID'] = sp.artist_related_artists(artist)['artists'][i]['id']
-    response['song_url'] = sp.artist_related_artists(artist)['artists'][i]['uri']
-    if len(sp.artist_related_artists(artist)['artists'][i]['genres']) == 0 :
+    response['name'] = relatedResults['artists'][i]['name']
+    response['artistID'] = relatedResults['artists'][i]['id']
+    response['song_url'] = relatedResults['artists'][i]['uri']
+    if len(relatedResults['artists'][i]['genres']) == 0 :
             response['genre'] = '' 
     else:
-        response['genre'] = sp.artist_related_artists(artist)['artists'][i]['genres'][0]
+        response['genre'] = relatedResults['artists'][i]['genres'][0]
         
-    if len(sp.artist_related_artists(artist)['artists'][i]['images']) == 0:
+    if len(relatedResults['artists'][i]['images']) == 0:
             response['img_url'] = 'https://i.scdn.co/image/ab6761610000e5ebf4593f7b778219838d858c34' 
     else:
-        response['img_url'] = sp.artist_related_artists(artist)['artists'][i]['images'][0]['url']
+        response['img_url'] = relatedResults['artists'][i]['images'][0]['url']
     
     
     return(response)
