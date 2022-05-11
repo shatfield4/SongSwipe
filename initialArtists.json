@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Justin Bieber",
+        "genre": "pop",
+        "img_url": "https://i.scdn.co/image/ab676161000051748ae7f2aaa9817a704a87ea36",
+        "song_url": "spotify:artist:1uNFoZAHBGtllmzznpCI3s"
+    },
+    {
+        "name": "Eminem",
+        "genre": "rap",
+        "img_url": "https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b",
+        "song_url": "spotify:artist:7dGJo4pcD2V6oG8kP0tJRR"
+    },
+    {
+        "name": "Adele",
+        "genre": "pop",
+        "img_url": "https://i.scdn.co/image/ab6761610000517468f6e5892075d7f22615bd17",
+        "song_url": "spotify:artist:4dpARuHxo51G3z768sgnrY"
+    },
+    {
+        "name": "Beyonce",
+        "genre": "r&b",
+        "img_url": "https://i.scdn.co/image/ab67616100005174d3d058be8485c8583703b6d2",
+        "song_url": "spotify:artist:6vWDO969PvNqNYHIOW5v0m"
+    },
+    {
+        "name": "Drake",
+        "genre": "rap",
+        "img_url": "https://i.scdn.co/image/ab676161000051749e46a78c5cd2f7a8e7669980",
+        "song_url": "spotify:artist:3TVXtAsR1Inumwj472S9r4"
+    },
+    {
+        "name": "Bruno Mars",
+        "genre": "pop",
+        "img_url": "https://i.scdn.co/image/ab67616100005174c36dd9eb55fb0db4911f25dd",
+        "song_url": "spotify:artist:0du5cEVh5yTK9QJze8zA0C"
+    },
+    {
+        "name": "Billie Eilish",
+        "genre": "electropop",
+        "img_url": "https://i.scdn.co/image/ab67616100005174d8b9980db67272cb4d2c3daf",
+        "song_url": "spotify:artist:6qqNVTkY8uBg9cP3Jd7DAH"
+    },
+    {
+        "name": "Harry Styles",
+        "genre": "pop",
+        "img_url": "https://i.scdn.co/image/ab676161000051745464c6450a88d073a3f117b0",
+        "song_url": "spotify:artist:6KImCVD70vtIoJWnq6nGn3"
+    },
+    {
+        "name": "The Weeknd",
+        "genre": "pop",
+        "img_url": "https://i.scdn.co/image/ab676161000051742f71b65ef483ed75a8b40437",
+        "song_url": "spotify:artist:1Xyo4u8uXC1ZmMpatF05PJ"
+    }
+]
